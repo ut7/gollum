@@ -24,7 +24,7 @@ module Precious
             :files     => v.stats.files.map { |f,*rest|
               page_path = f.gsub(/^.*=> /, '').gsub(/\..*$/, '')
               { :file => f,
-                :link => "#{page_path}/#{v.id}"
+                :link => "#{page_path}"
               }
             }
           }
