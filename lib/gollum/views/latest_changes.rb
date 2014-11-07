@@ -22,7 +22,7 @@ module Precious
             :identicon => self._identicon_code(v.author.email),
             :date_full => v.authored_date,
             :files     => v.stats.files.map { |f,*rest|
-              page_path = f.gsub(/^.*=> /, '')
+              page_path = extract_renamed_path_destination(f)
               Gollum::Markup.formats.values.each do |format|
                 page_path = page_path.gsub(/.#{format[:regexp]}$/, '')
               end
@@ -32,6 +32,10 @@ module Precious
             }
           }
         end
+      end
+
+      def extract_renamed_path_destination(file)
+        return file.gsub(/{.* => (.*)}/, '\1').gsub(/.* => (.*)/, '\1')
       end
 
       # http://stackoverflow.com/questions/9445760/bit-shifting-in-ruby

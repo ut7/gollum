@@ -27,6 +27,11 @@ context "Precious::Views::LatestChanges" do
     assert body.include?('<a href="My-Precious">My-&lt;b&gt;Precious.md =&gt; My-Precious.md</a>'), "/latest_changes should indicate renaming action in #{body}"
   end
 
+  test "extract destination file name in case of path renaming" do
+    view = Precious::Views::LatestChanges.new
+    assert_equal "newDirectoryName/fileName.md", view.extract_renamed_path_destination("{oldDirectoryName => newDirectoryName}/fileName.md")
+  end
+
   teardown do
     FileUtils.rm_rf(@path)
   end
