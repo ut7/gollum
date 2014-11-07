@@ -22,7 +22,10 @@ module Precious
             :identicon => self._identicon_code(v.author.email),
             :date_full => v.authored_date,
             :files     => v.stats.files.map { |f,*rest|
-              page_path = f.gsub(/^.*=> /, '').gsub(/\..*$/, '')
+              page_path = f.gsub(/^.*=> /, '')
+              Gollum::Markup.formats.values.each do |format|
+                page_path = page_path.gsub(/.#{format[:regexp]}$/, '')
+              end
               { :file => f,
                 :link => "#{page_path}"
               }

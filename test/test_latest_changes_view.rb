@@ -22,7 +22,8 @@ context "Precious::Views::LatestChanges" do
     assert body.include?('<span class="username">Charles Pence</span>'), "/latest_changes should include the Author Charles Pence"
     assert body.include?('60f12f4'), "/latest_changes should include the :latest_changes_count commit"
     assert !body.include?('0ed8cbe'), "/latest_changes should not include more than latest_changes_count commits"
-    assert body.include?('<a href="Hobbit">Hobbit.md</a>'), "/latest_changes should include links to modified pages"
+    assert body.include?('<a href="Data-Two.csv">Data-Two.csv</a>'), "/latest_changes include links to modified files in #{body}"
+    assert body.include?('<a href="Hobbit">Hobbit.md</a>'), "/latest_changes should include links to modified pages in #{body}"
     assert body.include?('<a href="My-Precious">My-&lt;b&gt;Precious.md =&gt; My-Precious.md</a>'), "/latest_changes should indicate renaming action in #{body}"
   end
 
