@@ -4,11 +4,11 @@ require File.expand_path '../../lib/gollum/views/latest_changes', __FILE__
 
 context "Precious::Views::LatestChanges" do
   include Rack::Test::Methods
-  
+
   def app
     Precious::App
   end
-  
+
   setup do
     @path = cloned_testpath("examples/lotr.git")
     @wiki = Gollum::Wiki.new(@path)
@@ -25,7 +25,7 @@ context "Precious::Views::LatestChanges" do
     assert body.include?('<a href="Hobbit">Hobbit.md</a>'), "/latest_changes should include links to modified pages"
     assert body.include?('<a href="My-Precious">My-&lt;b&gt;Precious.md =&gt; My-Precious.md</a>'), "/latest_changes should indicate renaming action in #{body}"
   end
-  
+
   teardown do
     FileUtils.rm_rf(@path)
   end
