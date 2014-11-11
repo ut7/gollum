@@ -34,7 +34,8 @@ context "Precious::Views::LatestChanges" do
 
   test "remove page extentions" do
     view = Precious::Views::LatestChanges.new
-    assert_equal "help-wiki", view.remove_page_extentions("help-wiki.md")
+    assert_equal "page", view.remove_page_extentions("page.wiki")
+    assert_equal "page-wiki", view.remove_page_extentions("page-wiki.md")
     assert_equal "file.any_extention", view.remove_page_extentions("file.any_extention")
   end
 
