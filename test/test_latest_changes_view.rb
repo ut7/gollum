@@ -32,6 +32,12 @@ context "Precious::Views::LatestChanges" do
     assert_equal "newDirectoryName/fileName.md", view.extract_renamed_path_destination("{oldDirectoryName => newDirectoryName}/fileName.md")
   end
 
+  test "remove page extentions" do
+    view = Precious::Views::LatestChanges.new
+    assert_equal "help-wiki", view.remove_page_extentions("help-wiki.md")
+    assert_equal "file.any_extention", view.remove_page_extentions("file.any_extention")
+  end
+
   teardown do
     FileUtils.rm_rf(@path)
   end
